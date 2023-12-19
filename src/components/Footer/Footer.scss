@@ -1,0 +1,59 @@
+.footer {
+    margin: 100px 100px 20px 100px;
+
+    .top {
+        display: flex;
+
+        .item {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: justify;
+            font-size: 0.8rem;
+
+            h1 {
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: #555;
+            }
+
+            .link,
+            span {
+                margin: 5px 0;
+                color: gray;
+            }
+        }
+    }
+
+    .bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 50px;
+
+        .left {
+            display: flex;
+            align-items: center;
+
+            .logo {
+                color: black;
+                font-size: 1.75rem;
+                font-weight: bold;
+                letter-spacing: 2px;
+            }
+
+            .copyright {
+                margin-left: 1.25rem;
+                font-size: 0.75rem;
+                color: gray;
+            }
+        }
+
+        .right {
+            img {
+                height: 50px;
+            }
+        }
+    }
+}
