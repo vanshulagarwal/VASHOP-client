@@ -1,3 +1,5 @@
+$cartBGColor: #d9b25f;
+
 .navbar {
     height: 80px;
 
@@ -37,12 +39,13 @@
 
             .cartIcon {
                 position: relative;
+
                 span {
                     font-size: 0.8rem;
                     height: 1.25rem;
                     width: 1.25rem;
                     border-radius: 50%;
-                    background-color: #2879fe;
+                    background-color: $cartBGColor;
                     color: white;
                     position: absolute;
                     top: -10px;
