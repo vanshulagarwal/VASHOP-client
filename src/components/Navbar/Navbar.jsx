@@ -1,13 +1,16 @@
-import React from "react"
+import React, { useState } from "react"
 import SearchIcon from '@mui/icons-material/Search';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { Link } from "react-router-dom";
 import "./Navbar.scss";
+import Cart from "../Cart/Cart";
 
 const Navbar = () => {
-    return <>
+    const [open, setOpen] = useState(false);
+
+    return (
         <div className="navbar">
             <div className="wrapper">
                 <div className="left">
@@ -39,15 +42,16 @@ const Navbar = () => {
                         <SearchIcon />
                         <PersonOutlineOutlinedIcon />
                         <FavoriteBorderOutlinedIcon />
-                        <div className="cartIcon">
+                        <div className="cartIcon" onClick={() => setOpen(!open)}>
                             <ShoppingBagOutlinedIcon />
                             <span>0</span>
                         </div>
                     </div>
                 </div>
             </div>
+            {open && <Cart />}
         </div>
-    </>
+    )
 }
 
 export default Navbar;
