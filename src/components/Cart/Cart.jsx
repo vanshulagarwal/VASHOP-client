@@ -28,9 +28,10 @@ const Cart = () => {
             <h1>Products in your cart</h1>
             {data?.map(item => (
                 <div className="item" key={item.id}>
+                    <img src={item.img1} alt="" />
                     <div className="details">
                         <h1>{item.title}</h1>
-                        <p>{item.description.substring(0,100)}</p>
+                        <p>{item.description?.substring(0,30)}...</p>
                         <div className="price">1 X ${item.price}</div>
                     </div>
                     <DeleteOutlineIcon className="delete"/>
@@ -41,7 +42,7 @@ const Cart = () => {
                 <span>$123</span>
             </div>
             <button>PROCEED TO CHECKOUT</button>
-            <span className="reset">RESET CART</span>
+            <span className="reset">Reset Cart</span>
         </div>
     )
 }
