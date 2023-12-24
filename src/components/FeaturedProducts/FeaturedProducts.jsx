@@ -1,42 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./FeaturedProducts.scss";
 import Card from "../Card/Card";
+import axios from "axios";
+import { makeRequest } from "../../makeRequest";
+import useFetch from "../../hooks/useFetch";
 
 const FeaturedProducts = ({ type }) => {
-    const data = [
-        {
-            id: 1,
-            img1: "https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            img2:"https://images.pexels.com/photos/878358/pexels-photo-878358.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            title: "Hoodie",
-            oldPrice: 1299,
-            price: 1099,
-        },
-        {
-            id: 2,
-            img1: "https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            img2:"https://images.pexels.com/photos/878358/pexels-photo-878358.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            title: "TShirt",
-            oldPrice: 999,
-            price: 699,
-        },
-        {
-            id: 3,
-            img1: "https://images.pexels.com/photos/18372435/pexels-photo-18372435/free-photo-of-light-landscape-sunset-fashion.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            img2:"https://images.pexels.com/photos/878358/pexels-photo-878358.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            title: "Hat",
-            oldPrice: 399,
-            price: 299,
-        },
-        {
-            id: 4,
-            img1: "https://images.pexels.com/photos/983564/pexels-photo-983564.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            img2:"https://images.pexels.com/photos/878358/pexels-photo-878358.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            title: "Skirt",
-            oldPrice: 1699,
-            price: 1499,
-        },
-    ];
+
+    const { data, loading, error } = useFetch("/products");
+    // const [data, setData] = useState([]);
+    // const [loading, setLoading] = useState(false);
+    // const [error, setError] = useState(false);
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             setLoading(true);
+    //             const res = await makeRequest.get("/products");
+    //             setData(res.data.products);
+    //         } catch (err) {
+    //             setError(true);
+    //             console.log(err);
+    //         }
+    //         setLoading(false);
+    //     };
+    //     fetchData();
+    // }, []);
+
+    // console.log(data.length);
 
     return (
         <div className="featuredProducts">
@@ -44,9 +35,13 @@ const FeaturedProducts = ({ type }) => {
                 <h1>{type} Products</h1>
             </div>
             <div className="bottom">
-                {data.map(item => (
-                    <Card item={item} key={item.id} />
-                ))}
+                {error
+                    ? "Something went Wrong"
+                    : loading
+                        ? "loading"
+                        : (console.log(data.length),data.map(item => (
+                            <Card item={item} key={item._id} />
+                        )))}
             </div>
         </div>
     )

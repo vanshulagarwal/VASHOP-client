@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 
 const Card = ({ item }) => {
     return (
-        <Link className="link" to={`/product/${item.id}`}>
+        <Link className="link" to={`/product/${item._id}`}>
             <div className="card">
                 <div className="image">
-                    <img src={item.img1} alt="" className="mainImg" />
-                    <img src={item.img2} alt="" className="secondImg" />
+                    <img src={"/img"+item.imgPath} alt="" className="mainImg" />
+                    <img src={"/img"+item.imgPath2} alt="" className="secondImg" />
                 </div>
-                <h2>{item.title}</h2>
+                <h2>{item.name}</h2>
                 <div className="prices">
-                    <h3>&#8377;{item.oldPrice}</h3>
+                    <h3>&#8377;{item.oldPrice || item.price+200}</h3>
                     <h3>&#8377;{item.price}</h3>
                 </div>
             </div>
