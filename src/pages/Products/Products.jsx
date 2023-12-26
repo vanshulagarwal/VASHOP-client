@@ -16,6 +16,16 @@ const Products = () => {
     const { data, loading, error } = useFetch(`/products?category=${categ}&price[lt]=${maxPrice}`);
     console.log(data);
 
+    if (sort) {
+        data.sort((a, b) => {
+            if (sort === 'asc') {
+                return a.price - b.price;
+            } else if (sort === 'desc') {
+                return b.price - a.price;
+            }
+        });
+    }
+
     return <div className="products">
         <div className="left">
             <div className="filterItem">
