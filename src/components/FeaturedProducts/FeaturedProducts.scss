@@ -1,9 +1,19 @@
 .featuredProducts{
-    margin: 100px;
+    margin: 10vh 5vw;
+
+    h1{
+        text-align: center;
+        border-bottom: 1px solid rgb(21,21,21,0.5);
+        padding: 1vmax 0;
+        max-width: 20vmax;
+        min-width: fit-content;
+        font-size: 1.5rem;
+        margin: auto;
+    }
 
     .bottom{
         display: flex;
         justify-content: center;
-        gap:50px;
+        flex-wrap: wrap;
     }
 }

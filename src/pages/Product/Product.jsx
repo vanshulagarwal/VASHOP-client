@@ -6,6 +6,9 @@ import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartReducer";
+import Loader from "../../components/Loader/Loader";
+import { Rating } from "react-simple-star-rating";
+import ReviewCard from "../../components/ReviewCard/ReviewCard";
 
 const Product = () => {
     const [selectedImage, setSelectedImage] = useState("imgPath");
@@ -23,7 +26,7 @@ const Product = () => {
             {error
                 ? "Something went wrong"
                 : loading
-                    ? "loading"
+                    ? <Loader />
                     : <>
                         <div className="left">
                             <div className="images">
@@ -37,7 +40,15 @@ const Product = () => {
                         </div>
                         <div className="right">
                             <h1>{data.name}</h1>
-                            <span className="price"> &#8377; {data.price}</span>
+                            <div className="rating">
+                                <span><Rating initialValue={data.rating} readonly={true} size={20} allowFraction={true} />{data.rating}</span>
+                                <span>({data.numOfReviews} reviews)</span>
+                            </div>
+                            <div className="price">
+                                <h3>&#8377;{data.price}</h3>
+                                <h3>&#8377;{data.oldPrice || data.price + 200}</h3>
+                            </div>
+                            <hr />
                             <p>{data.description}</p>
                             <div className="quantity">
                                 <button onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}>-</button>
@@ -71,6 +82,12 @@ const Product = () => {
                                 <hr />
                                 <span>FAQ</span>
                             </div>
+                            <h3 className="reviewHeading">Reviews</h3>
+                            {data.reviews && data.reviews[0]
+                                ? (<div className="reviews">
+                                    {data.reviews.map(review => <ReviewCard review={review} key={review._id} />)}
+                                </div>)
+                                : <div className="noReviews">No Reviews Yet</div>}
                         </div>
                     </>}
         </div>

@@ -23,16 +23,16 @@ const Navbar = () => {
                         <Link className="link" to="/">Home</Link>
                     </div>
                     <div className="item">
-                        <Link className="link" to="/products?categories=cate1">Cate1</Link>
+                        <Link className="link" to="/products?categories=men">Men</Link>
                     </div>
                     <div className="item">
-                        <Link className="link" to="/products?categories=cate2">Cate2</Link>
+                        <Link className="link" to="/products?categories=women">Women</Link>
                     </div>
                     <div className="item">
-                        <Link className="link" to="/products?categories=cate3">Cate3</Link>
+                        <Link className="link" to="/products?categories=formal">Formals</Link>
                     </div>
                     <div className="item">
-                        <Link className="link" to="/products?categories=cate4">Cate4</Link>
+                        <Link className="link" to="/products?categories=winter">Winter</Link>
                     </div>
                     <div className="item">
                         <Link className="link" to="/">Contact</Link>

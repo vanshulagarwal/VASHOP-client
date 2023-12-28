@@ -3,6 +3,7 @@ import List from "../../components/List/List";
 import { useSearchParams } from "react-router-dom";
 import "./Product.scss";
 import useFetch from "../../hooks/useFetch";
+import Loader from "../../components/Loader/Loader";
 
 const Products = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -80,7 +81,7 @@ const Products = () => {
             {error
                 ? "something went wrong"
                 : loading
-                    ? "loading"
+                    ? <Loader />
                     : <List data={data} />
             }
         </div>

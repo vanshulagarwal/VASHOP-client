@@ -4,6 +4,7 @@ import Card from "../Card/Card";
 import axios from "axios";
 import { makeRequest } from "../../makeRequest";
 import useFetch from "../../hooks/useFetch";
+import Loader from "../Loader/Loader";
 
 const FeaturedProducts = ({ type }) => {
 
@@ -38,8 +39,15 @@ const FeaturedProducts = ({ type }) => {
                 {error
                     ? "Something went Wrong"
                     : loading
-                        ? "loading"
-                        : (console.log(data.length),data.map(item => (
+                        ? <Loader />
+                        : (console.log(data.length), data.map(item => (
+                            <Card item={item} key={item._id} />
+                        )))}
+                {error
+                    ? "Something went Wrong"
+                    : loading
+                        ? <Loader />
+                        : (console.log(data.length), data.map(item => (
                             <Card item={item} key={item._id} />
                         )))}
             </div>
