@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import "./Navbar.scss";
 import Cart from "../Cart/Cart";
 import { useSelector } from "react-redux";
+import Search from "../Search/Search";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
@@ -42,6 +43,7 @@ const Navbar = () => {
                 <div className="right">
                     <div className="icons">
                         <SearchIcon />
+                        <Search/>
                         <PersonOutlineOutlinedIcon />
                         <FavoriteBorderOutlinedIcon />
                         <div className="cartIcon" onClick={() => setOpen(!open)}>
