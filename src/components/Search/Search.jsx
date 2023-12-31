@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import "./Search.scss";
-import SearchIcon from '@mui/icons-material/Search';
 import useFetch from "../../hooks/useFetch";
 
-const Search = () => {
+const Search = forwardRef(({ }, ref) => {
     const [input, setInput] = useState("");
 
 
@@ -20,10 +19,9 @@ const Search = () => {
     }
 
     return (
-        <div className="search">
+        <div ref={ref.searchBtn} className="search">
             <div className="input-wrapper" onFocus={handleFocus} onBlur={handleBlur}>
-                <SearchIcon />
-                <input id="searchInput" type="text" placeholder="Type to search..." value={input} onChange={e => setInput(e.target.value)} />
+                <input ref={ref.searchInput} id="searchInput" type="text" placeholder="Type to search..." value={input} onChange={e => setInput(e.target.value)} />
             </div>
             {showResults
                 ? data.length
@@ -52,6 +50,6 @@ const Search = () => {
             }
         </div>
     )
-}
+})
 
 export default Search;

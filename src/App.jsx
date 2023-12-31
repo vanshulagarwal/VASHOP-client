@@ -6,6 +6,7 @@ import Products from './pages/Products/Products'
 import Product from './pages/Product/Product'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
+import LoginPage from './pages/LoginPage/LoginPage'
 
 const Layout = () => {
   return (
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <span>Login</span>
+        element: <span><LoginPage /></span>
       },
     ]
   },

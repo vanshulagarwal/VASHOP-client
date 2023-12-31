@@ -1,0 +1,175 @@
+.loginpage {
+    * {
+        box-sizing: border-box;
+    }
+
+    h1 {
+        font-weight: bold;
+        margin: 0;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1rem;
+        font-weight: 100;
+        letter-spacing: 0.5px;
+        margin: 20px 0 30px;
+    }
+
+    button {
+        border-radius: 20px;
+        border: 1px solid #d9b25f;
+        background-color: #d9b25f;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        margin-top: 1rem;
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    form {
+        background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 50px;
+        height: 100%;
+        text-align: center;
+    }
+
+    input {
+        border: none;
+        border-bottom: 1px solid black;
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 100%;
+        font-size: 1rem;
+        outline: none;
+    }
+
+    .container {
+        background-color: #fff;
+        border-radius: 1rem;
+        position: relative;
+        min-height: 480px;
+
+        .form-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.8s ease-in-out;
+        }
+
+        .sign-in-container {
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+
+        .register-container {
+            left: 0;
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .windowContainer {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 1rem;
+            transition: all 0.8s ease-in-out;
+            z-index: 100;
+
+            .window {
+                background: #d9b25f;
+                background: -webkit-linear-gradient(to right, #d9b25f, #d9b25f);
+                background: linear-gradient(to right, #d9b25f, #d9b25f);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: 0 0;
+                color: #ffffff;
+                position: relative;
+                left: -100%;
+                height: 100%;
+                width: 200%;
+                // transform: translateX(0);
+                transition: all 0.8s ease-in-out;
+
+                .windowPanel {
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    top: 0;
+                    height: 100%;
+                    width: 50%;
+                    // transform: translateX(0);
+                    transition: all 0.8s ease-in-out;
+                }
+
+                .windowLeft {
+                    left: -20%;
+                    // transform: translateX(-20%);
+                }
+
+                .windowRight {
+                    left: 50%;
+                    // transform: translateX(0);
+                }
+
+                .windowBtn {
+                    background-color: transparent;
+                    border-color: #ffffff;
+                }
+            }
+        }
+
+
+        &.rightActive {
+            .sign-in-container {
+                transform: translateX(100%);
+            }
+
+            .register-container {
+                transform: translateX(100%);
+                opacity: 1;
+                z-index: 5;
+            }
+
+            .windowContainer {
+                left:0;
+
+                .window {
+                    left: 0;
+
+                    .windowLeft {
+                        left: 0;
+                    }
+
+                    .windowRight {
+                        left: 70%;
+                    }
+                }
+            }
+
+
+        }
+    }
+}

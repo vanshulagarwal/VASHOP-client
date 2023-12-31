@@ -33,9 +33,13 @@ $cartBGColor: #d9b25f;
 
         .icons {
             display: flex;
+            align-items: center;
             color: #777;
             cursor: pointer;
-            gap: 15px;
+
+            .icon{
+                margin: 0 10px;
+            }
 
             .cartIcon {
                 position: relative;
