@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import "./LoginPage.scss";
+import usePostFetch from "../../hooks/usePostFetch";
+import { useDispatch, useSelector } from "react-redux";
+import { removeAuth, setAuth } from "../../redux/authReducer";
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const auth = useSelector(state => state.auth.auth);
+    // console.log(auth);
 
     const [type, setType] = useState("signIn");
     const handleOnClick = str => {
@@ -33,8 +41,39 @@ const LoginPage = () => {
         });
     };
 
+    const signInHandle = async (e) => {
+        e.preventDefault();
+        const data = await usePostFetch('/login', {
+            email: signinState.email,
+            password: signinState.password
+        });
+        // console.log(data.data);
+        dispatch(setAuth(data.data))
+        if (data.data.user) {
+            navigate('/');
+        }
+        // dispatch(removeAuth());
+    }
+
+    const registerHandle = async (e) => {
+        e.preventDefault();
+        const data = await usePostFetch('/register', {
+            email: registerState.email,
+            password: registerState.password,
+            name: registerState.name
+        });
+        // console.log(data.data);
+        dispatch(setAuth(data.data))
+        if (data.data.user) {
+            navigate('/');
+        }
+    }
+
     return (
         <div className="loginpage">
+            {auth.error || auth.message
+                ? <div>{auth.error || auth.message}</div>
+                : ""}
             <div className={"container " + (type === "signUp" ? "rightActive" : "")} id="container">
                 <div className="form-container register-container">
                     <form>
@@ -42,7 +81,7 @@ const LoginPage = () => {
                         <input type="text" name="name" value={registerState.name} onChange={handleRegisterChange} placeholder="Name" />
                         <input type="email" name="email" value={registerState.email} onChange={handleRegisterChange} placeholder="Email" />
                         <input type="password" name="password" value={registerState.password} onChange={handleRegisterChange} placeholder="Password" />
-                        <button>Register</button>
+                        <button onClick={registerHandle}>Register</button>
                     </form>
                 </div>
                 <div className="form-container sign-in-container">
@@ -50,7 +89,7 @@ const LoginPage = () => {
                         <h1>Sign in</h1>
                         <input type="email" placeholder="Email" name="email" value={signinState.email} onChange={handleSignInChange} />
                         <input type="password" name="password" placeholder="Password" value={signinState.password} onChange={handleSignInChange} />
-                        <button>Sign In</button>
+                        <button onClick={signInHandle}>Sign In</button>
                     </form>
                 </div>
                 <div className="windowContainer">
