@@ -9,11 +9,13 @@ import Cart from "../Cart/Cart";
 import { useSelector } from "react-redux";
 import Search from "../Search/Search";
 import CloseIcon from '@mui/icons-material/Close';
+import Profile from "../Profile/Profile";
 
 const Navbar = () => {
     const products = useSelector((state) => state.cart.products);
     const [open, setOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
+    const [profileOpen, setProfileOpen] = useState(false);
 
     // const search = document.querySelector('.search');
     const search = useRef();
@@ -34,6 +36,20 @@ const Navbar = () => {
         }
         setSearchOpen(!searchOpen);
     }
+
+    const handleHoverIn = () => {
+        setProfileOpen(true);
+    }
+    const handleHoverOut = () => {
+        setProfileOpen(false);
+    }
+
+    const handleClickScroll = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
 
     return (
         <div className="navbar">
@@ -58,7 +74,7 @@ const Navbar = () => {
                         <Link className="link" to="/products?categories=winter">Winter</Link>
                     </div>
                     <div className="item">
-                        <Link className="link" to="/">Contact</Link>
+                        <Link className="link" onClick={() => handleClickScroll("contact")}>Contact</Link>
                     </div>
                 </div>
 
@@ -68,7 +84,12 @@ const Navbar = () => {
                         {searchOpen
                             ? <CloseIcon className="icon" onClick={handleSearchChange} />
                             : <SearchIcon className="icon" onClick={handleSearchChange} />}
-                        <PersonOutlineOutlinedIcon className="icon" />
+                        <div className="profileIcon" onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut} >
+                            <PersonOutlineOutlinedIcon className="icon" />
+                            {profileOpen
+                                ? <Profile />
+                                : <></>}
+                        </div>
                         <FavoriteBorderOutlinedIcon className="icon" />
                         <div className="cartIcon icon" onClick={() => setOpen(!open)}>
                             <ShoppingBagOutlinedIcon />

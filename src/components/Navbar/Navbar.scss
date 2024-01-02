@@ -35,10 +35,10 @@ $cartBGColor: #d9b25f;
             display: flex;
             align-items: center;
             color: #777;
-            cursor: pointer;
 
-            .icon{
+            .icon {
                 margin: 0 10px;
+                cursor: pointer;
             }
 
             .cartIcon {
@@ -56,6 +56,10 @@ $cartBGColor: #d9b25f;
                     left: 15px;
                     text-align: center;
                 }
+            }
+
+            .profileIcon {
+                position: relative;
             }
         }
     }

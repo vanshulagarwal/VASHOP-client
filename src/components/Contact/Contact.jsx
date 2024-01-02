@@ -8,7 +8,7 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 
 const Contact = () => {
     return (
-        <div className="contact">
+        <div className="contact" id="contact">
             <div className="wrapper">
                 <span>BE IN TOUCH WITH US</span>
                 <div className="mail">
