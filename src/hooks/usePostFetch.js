@@ -2,13 +2,21 @@ import { makeRequest } from "../makeRequest";
 
 const usePostFetch = async (url, bodyData) => {
     try {
-        const data = await makeRequest.post(url, { ...bodyData });
-        return {data:data.data};
+        const data = await makeRequest.post(url, { ...bodyData }, {
+            withCredentials: true
+        });
+        if(data.data){
+            return { data: data.data };
+        }
+        else{
+            return {error:data.error};
+        }
     } catch (err) {
         console.log(err);
-        return{
+        return {
             success: false,
-            error: "Some Error Occured"
+            status:err.response.status,
+            error: `${err.response.data.error}`
         }
     }
 }

@@ -15,6 +15,7 @@ const ReviewCard = ({ review }) => {
                 <Rating initialValue={review.rating} readonly={true} size={20} allowFraction={true} />
             </div>
             <span>{review.comment}</span>
+            <span></span>
         </div>
     )
 }

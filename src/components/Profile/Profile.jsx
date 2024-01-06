@@ -1,15 +1,35 @@
 import React from "react";
 import "./Profile.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { removeAuth } from "../../redux/authReducer";
+import { removeAuth, setAuth } from "../../redux/authReducer";
+import { makeRequest } from "../../makeRequest";
 
 const Profile = () => {
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.auth.auth.user);
 
-    const handleLogout = () => {
-        dispatch(removeAuth());
+    const handleLogout = async () => {
+        // dispatch(removeAuth());
+        try {
+            const data = await makeRequest.get('/logout', {
+                withCredentials: true
+            });
+            if (data.data) {
+                console.log({ data: data.data });
+                dispatch(setAuth(data.data));
+            }
+            else {
+                console.log({ error: data.error })
+            }
+        } catch (err) {
+            console.log(err);
+            console.log({
+                success: false,
+                status: err.response.status,
+                error: `${err.response.data.error}`
+            })
+        }
     }
 
     return (

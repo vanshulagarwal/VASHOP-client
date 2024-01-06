@@ -4,22 +4,51 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cartReducer";
 import Loader from "../../components/Loader/Loader";
 import { Rating } from "react-simple-star-rating";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
+import usePostFetch from "../../hooks/usePostFetch";
 
 const Product = () => {
-    const [selectedImage, setSelectedImage] = useState("imgPath");
-    const [quantity, setQuantity] = useState(1);
-
     const dispatch = useDispatch();
     const id = useParams().id;
     // console.log(id);
     const { data, loading, error } = useFetch(`/products/${id}`);
     // console.log(data);
+    const loggedInUser = useSelector(state => state.auth.auth.user);
 
+    const user = useSelector(state => state.auth.auth.user);
+    const [selectedImage, setSelectedImage] = useState("imgPath");
+    const [quantity, setQuantity] = useState(1);
+    const [reviewTitle, setReviewTitle] = useState("");
+    const [newReview, setNewReview] = useState("");
+    const [rating, setRating] = useState(1);
+
+    const handleRating = (rate) => {
+        setRating(rate);
+    }
+
+    const handleReviewSubmit = async (e) => {
+        e.preventDefault();
+        const data = await usePostFetch(`/products/${id}/addreview`, {
+            author: loggedInUser._id,
+            title: reviewTitle,
+            rating: rating,
+            comment: newReview
+        })
+        console.log(data);
+        if (data.data) {
+            console.log("Successfully submitted a review");
+        }
+        else {
+            if (data.status == 401) {
+                console.log("Session invalid or expired. Relogin to continue.");
+            }
+            console.log(data.error);
+        }
+    }
 
     return (
         <div className="product">
@@ -41,7 +70,7 @@ const Product = () => {
                         <div className="right">
                             <h1>{data.name}</h1>
                             <div className="rating">
-                                <span><Rating initialValue={data.rating} readonly={true} size={20} allowFraction={true} />{data.rating}</span>
+                                <span><Rating initialValue={data.rating} readonly={true} size={20} allowFraction={true} />{Math.round(data.rating * 100) / 100}</span>
                                 <span>({data.numOfReviews} reviews)</span>
                             </div>
                             <div className="price">
@@ -87,7 +116,23 @@ const Product = () => {
                                 ? (<div className="reviews">
                                     {data.reviews.map(review => <ReviewCard review={review} key={review._id} />)}
                                 </div>)
-                                : <div className="noReviews">No Reviews Yet</div>}
+                                : <div className="noReviews">No Reviews Yet</div>
+                            }
+                            <div className="addReview">
+                                <h3>Add A Review</h3>
+                                {user
+                                    ?
+                                    <form>
+                                        <Rating onClick={handleRating} initialValue={rating} size={25} />
+                                        <input type="text" value={reviewTitle} onChange={e => setReviewTitle(e.target.value)} placeholder="Title" />
+                                        <textarea type="text" value={newReview} onChange={e => setNewReview(e.target.value)} placeholder="Write a review..." />
+                                        <button onClick={handleReviewSubmit}>Submit Review</button>
+                                    </form>
+                                    : <div className="signInReview">
+                                        Sign in to write a review
+                                        <a href="/login"><button>Sign In</button></a>
+                                    </div>}
+                            </div>
                         </div>
                     </>}
         </div>

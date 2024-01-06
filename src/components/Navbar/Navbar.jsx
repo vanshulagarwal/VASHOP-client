@@ -21,6 +21,7 @@ const Navbar = () => {
     const search = useRef();
     search.searchBtn = useRef();
     search.searchInput = useRef();
+    const cartRef = useRef();
 
     const handleSearchChange = () => {
         if (searchOpen) {
@@ -50,6 +51,23 @@ const Navbar = () => {
             element.scrollIntoView({ behavior: "smooth" });
         }
     };
+
+    const handleCartOpen = () => {
+        if (open) {
+            cartRef.current.style.top = "-100vh";
+            cartRef.current.style.width = "0px";
+            cartRef.current.style.opacity = 0;
+        }
+        else {
+            cartRef.current.style.opacity = 1;
+            cartRef.current.style.top = "0px";
+            cartRef.current.style.width = "400px";
+            // setTimeout(() => {                    
+            //     cartRef.current.style.top="0";
+            // }, 600);
+        }
+        setOpen(!open);
+    }
 
     return (
         <div className="navbar">
@@ -91,14 +109,14 @@ const Navbar = () => {
                                 : <></>}
                         </div>
                         <FavoriteBorderOutlinedIcon className="icon" />
-                        <div className="cartIcon icon" onClick={() => setOpen(!open)}>
+                        <div className="cartIcon icon" onClick={handleCartOpen}>
                             <ShoppingBagOutlinedIcon />
                             <span>{products.length}</span>
                         </div>
                     </div>
                 </div>
             </div>
-            {open && <Cart />}
+            <Cart ref={cartRef} handleCartOpen={handleCartOpen} />
         </div>
     )
 }
