@@ -1,10 +1,13 @@
-body{
-  margin: 0;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #f3ecdd;
-}
+  /* @import url('https://fonts.googleapis.com/css2?family=Play&family=Poppins&family=Prompt:wght@100;200;300;400;500;600;700;800;900&family=Quicksand&family=Red+Hat+Display&family=Teko&display=swap'); */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-/* :root {
+  body {
+    margin: 0;
+    font-family: Poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    /* background-color: #f3ecdd; */
+  }
+
+  /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;

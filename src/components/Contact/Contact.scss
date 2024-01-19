@@ -23,7 +23,7 @@
         button {
             padding: 10px;
             color: white;
-            background: #966805;;
+            background: #966805;
             border-radius: 0 10px 10px 0;
             border: none;
             font-weight: 600;
@@ -32,6 +32,11 @@
         .icons {
             display: flex;
             gap: 10px;
+        }
+
+        @media (max-width:800px) {
+            flex-direction: column;
+            gap: 20px;
         }
     }
 }

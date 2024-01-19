@@ -80,10 +80,11 @@ $red: #f01b1b;
                         color: #2879fe;
                         display: flex;
                         align-items: center;
-                        gap: 5px;
+                        // gap: 5px;
+                        justify-content: space-between;
                         border: 2px solid gray;
                         // border-radius: 50px;
-                        width: fit-content;
+                        width: 55px;
                         color: green;
                         font-weight: 500;
 

@@ -1,6 +1,7 @@
 import React, { forwardRef, useState } from "react";
 import "./Search.scss";
 import useFetch from "../../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 const Search = forwardRef(({ }, ref) => {
     const [input, setInput] = useState("");
@@ -18,6 +19,10 @@ const Search = forwardRef(({ }, ref) => {
         setShowResults(false);
     }
 
+    const handleMouseDown = (e) => {
+        e.preventDefault();
+    }
+
     return (
         <div ref={ref.searchBtn} className="search">
             <div className="input-wrapper" onFocus={handleFocus} onBlur={handleBlur}>
@@ -25,12 +30,14 @@ const Search = forwardRef(({ }, ref) => {
             </div>
             {showResults
                 ? data.length
-                    ? <div className="resultsList">
+                    ? <div className="resultsList" onMouseDown={handleMouseDown}>
                         {data.map(item => {
-                            return <div key={item._id} className="item">
-                                <img src={"/img" + item.imgPath} alt="" />
-                                <p>{item.name}</p>
-                            </div>
+                            return <Link to={"/product/" + item._id} className="link">
+                                <div key={item._id} className="item">
+                                    <img src={"/img" + item.imgPath} alt="" />
+                                    <p>{item.name}</p>
+                                </div>
+                            </Link>
                         })}
                         {data.map(item => {
                             return <div key={item._id} className="item">
@@ -45,7 +52,7 @@ const Search = forwardRef(({ }, ref) => {
                             </div>
                         })}
                     </div>
-                    : <div className="noResults">No Results Found</div>
+                    : <div className="noResults" onMouseDown={handleMouseDown}>No Results Found</div>
                 : ""
             }
         </div>

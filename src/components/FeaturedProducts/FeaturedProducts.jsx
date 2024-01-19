@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./FeaturedProducts.scss";
 import Card from "../Card/Card";
-import axios from "axios";
-import { makeRequest } from "../../makeRequest";
+// import axios from "axios";
+// import { makeRequest } from "../../makeRequest";
 import useFetch from "../../hooks/useFetch";
 import Loader from "../Loader/Loader";
+import { toast } from "react-toastify";
 
 const FeaturedProducts = ({ type }) => {
 
@@ -37,19 +38,23 @@ const FeaturedProducts = ({ type }) => {
             </div>
             <div className="bottom">
                 {error
-                    ? "Something went Wrong"
+                    ? toast.error("Something Went Wrong", {
+                        position: toast.POSITION.TOP_LEFT
+                    })
                     : loading
                         ? <Loader />
                         : (console.log(data.length), data.map(item => (
                             <Card item={item} key={item._id} />
                         )))}
-                {error
-                    ? "Something went Wrong"
+                {/* {error
+                    ? toast.error("Something went wrong", {
+                        position: toast.POSITION.TOP_LEFT
+                    })
                     : loading
                         ? <Loader />
                         : (console.log(data.length), data.map(item => (
                             <Card item={item} key={item._id} />
-                        )))}
+                        )))} */}
             </div>
         </div>
     )

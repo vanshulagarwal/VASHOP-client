@@ -1,7 +1,7 @@
 .slider {
     overflow-x: hidden;
-    height: calc(100vh - 80px);
-    width: 100vw;
+    height: calc(100vh - 60px);
+    width: 100%;
     position: relative;
 
     .container {
@@ -27,11 +27,11 @@
         .icon{
             width:40px;
             height: 50px;
-            border: 1px solid #999;
+            // border: 1px solid #999;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 5px;
+            // margin: 0 5px;
             cursor: pointer;
             transition: all 0.5s ease;
 
@@ -39,5 +39,11 @@
                 background-color: rgba(0,0,0,0.2);
             }
         }
+    }
+    @media (max-width:1000px) {
+        height: 500px;
+    }
+    @media (max-width:800px) {
+        height: 300px;
     }
 }

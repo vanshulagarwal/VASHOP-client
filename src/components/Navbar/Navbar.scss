@@ -1,29 +1,60 @@
 $cartBGColor: #d9b25f;
 
 .navbar {
-    height: 80px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 3000;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
 
     .wrapper {
-        padding: 10px 30px;
+        backdrop-filter: blur(10px);
+        // background-image: linear-gradient(rgba(217,178,95,0.5),rgba(255,255,255,0));
+        width: 100%;
+        height: 100%;
+        padding: 0 30px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-
-        .item {
-            padding: 0 15px;
-            display: flex;
-            align-items: center;
-            font-size: 1rem;
-        }
+        position: relative;
+        box-shadow:0 0 0 0 gray;
 
         .left {
             font-size: 2rem;
             letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .menu {
+            display: none;
+        }
+
+        .navbarClose {
+            display: none;
         }
 
         .center {
             display: flex;
             align-items: center;
+            transition: all 0.5s ease-in-out;
+
+            .item {
+                padding: 5px 15px;
+                display: flex;
+                align-items: center;
+                font-size: 1rem;
+                transition: all 0.2s;
+                border-radius: 25px;
+
+                &:hover {
+                    color: white;
+                    // border: 1px solid black;
+                    background-color: $cartBGColor;
+                }
+            }
         }
 
         .right {
@@ -39,6 +70,15 @@ $cartBGColor: #d9b25f;
             .icon {
                 margin: 0 10px;
                 cursor: pointer;
+                transition: all 0.2s ease-in-out;
+                
+                &:hover{
+                    color: black;
+                }
+
+                &.wishlistIcon:hover{
+                    color:#f01b1b;
+                }
             }
 
             .cartIcon {
@@ -61,6 +101,81 @@ $cartBGColor: #d9b25f;
             .profileIcon {
                 position: relative;
             }
+        }
+
+        @media (max-width:1200px) {
+            .menu {
+                display: block;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+            }
+
+            .left{
+                display: none;
+            }
+
+            .center {
+                position: absolute;
+                flex-direction: column;
+                align-items: start;
+                left: -200px;
+                top: 0;
+                height: 100vh;
+                width: 200px;
+                background-color: white;
+                z-index: 2000;
+                padding: 10px;
+                box-sizing: border-box;
+
+                .item {
+                    width: 100%;
+                    padding: 5px 10px;
+                    margin: 3px;
+                    box-sizing: border-box;
+
+                    &:hover{
+                        margin-left: 10px;
+                    }
+                }
+
+                .navbarClose {
+                    margin-left: auto;
+                    display: flex;
+                    align-items: center;
+                    background-color: transparent;
+                    border: 1px solid black;
+                    border-radius: 50px;
+                    padding: 5px 8px 5px 5px;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                    span{
+                        margin-top: 1px;
+                    }
+
+                    &:hover {
+                        // background-color: black;
+                        // color: white;
+                        transform: translate(-5px);
+                    }
+                }
+            }
+
+        }
+
+        @media (max-width:800px) {
+            // .left {
+            //     .link {
+            //         display: none;
+            //         padding: 0;
+            //     }
+
+            //     &::after {
+            //         content: "E";
+            //     }
+
+            //     ;
+            // }
         }
     }
 }

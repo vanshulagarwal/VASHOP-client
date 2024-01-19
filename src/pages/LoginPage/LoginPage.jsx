@@ -4,6 +4,7 @@ import usePostFetch from "../../hooks/usePostFetch";
 import { useDispatch, useSelector } from "react-redux";
 import { removeAuth, setAuth } from "../../redux/authReducer";
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -49,8 +50,22 @@ const LoginPage = () => {
         });
         // console.log(data.data);
         dispatch(setAuth(data.data))
-        if (data.data.user) {
+        if (data.data && data.data.user) {
+            toast.success(`Welcome back, ${data.data.user.name}`, {
+                position: toast.POSITION.TOP_LEFT
+            });
             navigate('/');
+        }
+        else if (data.data) {
+            toast.warn(data.data.error || data.data.message, {
+                position: toast.POSITION.TOP_LEFT
+            });
+        }
+        else {
+            console.log(data);
+            toast.error(data.error, {
+                position: toast.POSITION.TOP_LEFT
+            });
         }
         // dispatch(removeAuth());
     }
@@ -63,17 +78,28 @@ const LoginPage = () => {
             name: registerState.name
         });
         // console.log(data.data);
-        dispatch(setAuth(data.data))
-        if (data.data.user) {
+
+        if (data.data && data.data.user) {
+            dispatch(setAuth(data.data))
+            toast.success(`Hello ${data.data.user.name}`, {
+                position: toast.POSITION.TOP_LEFT
+            });
             navigate('/');
+        }
+        else if (data.data) {
+            toast.warn(data.data.error || data.data.message, {
+                position: toast.POSITION.TOP_LEFT
+            });
+        }
+        else {
+            toast.error(data.error, {
+                position: toast.POSITION.TOP_LEFT
+            });
         }
     }
 
     return (
         <div className="loginpage">
-            {auth.error || auth.message
-                ? <div>{auth.error || auth.message}</div>
-                : ""}
             <div className={"container " + (type === "signUp" ? "rightActive" : "")} id="container">
                 <div className="form-container register-container">
                     <form>
@@ -82,6 +108,9 @@ const LoginPage = () => {
                         <input type="email" name="email" value={registerState.email} onChange={handleRegisterChange} placeholder="Email" />
                         <input type="password" name="password" value={registerState.password} onChange={handleRegisterChange} placeholder="Password" />
                         <button onClick={registerHandle}>Register</button>
+                        <div className="mobileBtn">
+                            Already a customer? <span onClick={() => handleOnClick("signIn")}>Sign In</span>
+                        </div>
                     </form>
                 </div>
                 <div className="form-container sign-in-container">
@@ -90,6 +119,9 @@ const LoginPage = () => {
                         <input type="email" placeholder="Email" name="email" value={signinState.email} onChange={handleSignInChange} />
                         <input type="password" name="password" placeholder="Password" value={signinState.password} onChange={handleSignInChange} />
                         <button onClick={signInHandle}>Sign In</button>
+                        <div className="mobileBtn">
+                            New here? <span  onClick={() => handleOnClick("signUp")}>Sign Up</span>
+                        </div>
                     </form>
                 </div>
                 <div className="windowContainer">

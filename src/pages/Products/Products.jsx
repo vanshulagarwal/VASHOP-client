@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import List from "../../components/List/List";
 import { useSearchParams } from "react-router-dom";
-import "./Product.scss";
+import "./Products.scss";
 import useFetch from "../../hooks/useFetch";
 import Loader from "../../components/Loader/Loader";
 
@@ -9,13 +9,17 @@ const Products = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [categ, setCateg] = useState(searchParams.get("categories"));
 
-    const [maxPrice, setMaxPrice] = useState(4000);
+    const [valueA, setValueA] = useState(0);
+    const [valueB, setValueB] = useState(2000);
     const [sort, setSort] = useState(null);
+
+    const [filterOpen, setFilterOpen] = useState(false);
+    const filterRef = useRef();
 
     // console.log(categ);
     // console.log(maxPrice);
-    const { data, loading, error } = useFetch(`/products?category=${categ}&price[lt]=${maxPrice}`);
-    console.log(data);
+    const { data, loading, error } = useFetch(`/products?category=${categ}&price[gt]=${valueA}&price[lt]=${valueB}`);
+    // console.log(data);
 
     if (sort) {
         data.sort((a, b) => {
@@ -27,10 +31,27 @@ const Products = () => {
         });
     }
 
+    const handleFilterOpen = () => {
+        if (filterOpen) {
+            filterRef.current.style.left = "-240px";
+        }
+        else {
+            filterRef.current.style.left = "0px";
+        }
+        setFilterOpen(!filterOpen);
+    }
+
+    const handleInputChange = (event, setValue, propertyName) => {
+        const newValue = parseInt(event.target.value, 10);
+        setValue(newValue);
+        document.documentElement.style.setProperty(`--${propertyName}`, `${newValue}`);
+        document.documentElement.style.setProperty(`--text-${propertyName}`, JSON.stringify(newValue));
+    };
+
     return <div className="products">
-        <div className="left">
+        <div ref={filterRef} className="left">
             <div className="filterItem">
-                <h2>Product Categories</h2>
+                <h2 className="categoryHeading">Categories</h2>
                 <div className="inputItem">
                     <input type="radio" name="categ" id="1" value={"men"} defaultChecked={categ == "men" ? true : false} onChange={e => setCateg(e.target.value)} />
                     <label htmlFor="1">Men</label>
@@ -57,11 +78,18 @@ const Products = () => {
                 </div>
             </div>
             <div className="filterItem">
-                <h2>Filter by Price</h2>
-                <div className="inputItem">
+                <h2>By Price</h2>
+                {/* <div className="inputItem">
                     <span>0</span>
                     <input type="range" min={0} max={5000} value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
                     <span>{maxPrice}</span>
+                </div> */}
+                <div className="range-slider flat" data-ticks-position="top" style={{ '--min': 0, '--max': 5000, '--value-a': valueA, '--value-b': valueB, '--suffix': '%', '--text-value-a': JSON.stringify(valueA), '--text-value-b': JSON.stringify(valueB) }}>
+                    <input type="range" min="0" max="5000" value={valueA} onChange={(e) => handleInputChange(e, setValueA, 'value-a')} />
+                    <output>{valueA}</output>
+                    <input type="range" min="0" max="5000" value={valueB} onChange={(e) => handleInputChange(e, setValueB, 'value-b')} />
+                    <output>{valueB}</output>
+                    <div className="range-slider__progress"></div>
                 </div>
             </div>
             <div className="filterItem">
@@ -75,11 +103,14 @@ const Products = () => {
                     <label htmlFor="desc">Price (highest first)</label>
                 </div>
             </div>
+            <button className="filterBtn" onClick={handleFilterOpen}>FILTER</button>
         </div>
         <div className="right">
             <img className="catImg" src={"/img/" + categ + ".jpeg"} alt="" />
             {error
-                ? "something went wrong"
+                ? toast.error("Something went wrong", {
+                    position: toast.POSITION.TOP_LEFT
+                })
                 : loading
                     ? <Loader />
                     : <List data={data} />

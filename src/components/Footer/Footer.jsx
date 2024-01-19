@@ -30,7 +30,7 @@ const Footer = () => {
             </div>
             <div className="bottom">
                 <div className="left">
-                    <span className="logo">ECOMMERCE</span>
+                    <span className="logo">ABCDE</span>
                     <span className="copyright"> &copy; Copyright 2023. All Rights Reserved</span>
                 </div>
                 <div className="right">

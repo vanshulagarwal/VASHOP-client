@@ -1,12 +1,17 @@
 .reviewCard{
     // border: 1px solid black;
     border-radius: 1rem;
-    box-shadow: 0 0 5px 0 gray;
+    box-shadow: 0 0 7px 0 #dddddd;
     padding: 1.5rem;
     margin: 1rem 0;
+    transition: all 0.2s ease-in-out;
 
     h3{
         margin: 0;
+    }
+
+    span{
+        text-align: justify;
     }
 
     .center{
@@ -16,5 +21,9 @@
         p{
             padding: 0;
         }
+    }
+
+    &:hover{
+        transform: scale(1.01);
     }
 }

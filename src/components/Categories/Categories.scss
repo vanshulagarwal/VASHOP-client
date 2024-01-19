@@ -5,7 +5,7 @@ $whiteBGColor:#f3ecdd;
     display: grid;
     grid-template-rows: repeat(2, 50%);
     grid-template-columns: repeat(4, 1fr);
-    grid-template-areas:"a b c d" "e b f f";
+    // grid-template-areas:"a b c d" "e b f f";
     gap: 10px;
     margin: 10px;
 
@@ -76,5 +76,44 @@ $whiteBGColor:#f3ecdd;
             }
         }
     }
+    
+    @media (max-width:800px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6,1fr);
+        height: fit-content;
 
+        .items{
+            height: 200px;
+        }
+
+        .cate1 {
+            grid-row: 1;
+            grid-column: 1;
+        }
+    
+        .cate2 {
+            grid-row: 2;
+            grid-column: 1;
+        }
+    
+        .cate3 {
+            grid-row: 3;
+            grid-column: 1;
+        }
+    
+        .cate4 {
+            grid-row: 4;
+            grid-column: 1;
+        }
+    
+        .cate5 {
+            grid-row: 5;
+            grid-column: 1;
+        }
+    
+        .cate6 {
+            grid-row: 6;
+            grid-column: 1;
+        }
+    }
 }

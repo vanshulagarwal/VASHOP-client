@@ -7,10 +7,13 @@ import Product from './pages/Product/Product'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import LoginPage from './pages/LoginPage/LoginPage'
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify'
 
 const Layout = () => {
   return (
     <div className='app'>
+      <ToastContainer autoClose={3000} draggablePercent={50} limit={3}/>
       <Navbar />
       <Outlet />
       <Footer />
