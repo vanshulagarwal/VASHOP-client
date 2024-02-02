@@ -39,18 +39,6 @@ const Search = forwardRef(({ }, ref) => {
                                 </div>
                             </Link>
                         })}
-                        {data.map(item => {
-                            return <div key={item._id} className="item">
-                                <img src={"/img" + item.imgPath} alt="" />
-                                <p>{item.name}</p>
-                            </div>
-                        })}
-                        {data.map(item => {
-                            return <div key={item._id} className="item">
-                                <img src={"/img" + item.imgPath} alt="" />
-                                <p>{item.name}</p>
-                            </div>
-                        })}
                     </div>
                     : <div className="noResults" onMouseDown={handleMouseDown}>No Results Found</div>
                 : ""

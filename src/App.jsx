@@ -9,11 +9,13 @@ import Footer from './components/Footer/Footer'
 import LoginPage from './pages/LoginPage/LoginPage'
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from 'react-toastify'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
 
 const Layout = () => {
   return (
     <div className='app'>
       <ToastContainer autoClose={3000} draggablePercent={50} limit={3}/>
+      <ScrollToTop/>
       <Navbar />
       <Outlet />
       <Footer />

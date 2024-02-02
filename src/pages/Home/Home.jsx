@@ -8,9 +8,9 @@ const Home = () => {
     return (
         <div className="home">
             <Slider />
-            <FeaturedProducts type="Featured" />
+            <FeaturedProducts type="Featured" indexes={[4, 7, 9, 10, 21]} />
             <Categories />
-            <FeaturedProducts type="Trending" />
+            <FeaturedProducts type="Trending" indexes={[0, 8, 12, 14, 19]} />
             <Contact />
         </div>
     )

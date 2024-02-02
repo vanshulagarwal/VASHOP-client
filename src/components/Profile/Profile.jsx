@@ -44,14 +44,23 @@ const Profile = () => {
 
     return (
         <div className="profile">
-            <h3>Hello{user ? ", " + user.name : ""}</h3>
+            {/* <h3>Hello{user ? ", " + user.name : ""}</h3> */}
             {user
                 ? <div>
+                    <h3>{user.name}</h3>
+                    <h5>{user.email}</h5>
+                    <p>Orders</p>
                     <p>Wishlist</p>
+                    <p>Coupons</p>
+                    <p>Saved Addresses</p>
                     <p>Change Password</p>
                     <p className="logout"><button onClick={handleLogout}>LOGOUT</button></p>
                 </div>
-                : <a className="signInBtn" href="/login"><button>Sign In</button></a>
+                : <div>
+                    <h3>Hello</h3>
+                    <p>Become a member</p>
+                    <a className="signInBtn" href="/login"><button>SIGN IN</button></a>
+                </div>
             }
         </div>
     )

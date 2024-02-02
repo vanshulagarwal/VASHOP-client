@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./FeaturedProducts.scss";
 import Card from "../Card/Card";
-// import axios from "axios";
-// import { makeRequest } from "../../makeRequest";
 import useFetch from "../../hooks/useFetch";
 import Loader from "../Loader/Loader";
 import { toast } from "react-toastify";
 
-const FeaturedProducts = ({ type }) => {
+const FeaturedProducts = ({ type, indexes }) => {
 
     const { data, loading, error } = useFetch("/products");
     // const [data, setData] = useState([]);
@@ -43,18 +41,11 @@ const FeaturedProducts = ({ type }) => {
                     })
                     : loading
                         ? <Loader />
-                        : (console.log(data.length), data.map(item => (
-                            <Card item={item} key={item._id} />
-                        )))}
-                {/* {error
-                    ? toast.error("Something went wrong", {
-                        position: toast.POSITION.TOP_LEFT
-                    })
-                    : loading
-                        ? <Loader />
-                        : (console.log(data.length), data.map(item => (
-                            <Card item={item} key={item._id} />
-                        )))} */}
+                        : (console.log(indexes), data.map((item, i) => {
+                            if (indexes.includes(i)) {
+                                return <Card item={item} key={item._id} />
+                            }
+                        }))}
             </div>
         </div>
     )

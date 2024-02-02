@@ -1,11 +1,13 @@
 import React from "react";
 import "./Loader.scss";
-import {HashLoader} from "react-spinners";
+import { PuffLoader } from "react-spinners";
+import logo from "/img/logo.png";
 
-const Loader=()=>{
+const Loader = () => {
     return (
         <div className="loader">
-            <HashLoader color="#023e8a;"/>
+            <PuffLoader size={"20rem"} className="animation" color="black"/>
+            <img src={logo} alt="logo" className="logo" />
         </div>
     )
 };

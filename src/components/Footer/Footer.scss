@@ -1,3 +1,5 @@
+$pink: #ff3160;
+
 .footer {
     margin: 30px 50px;
 
@@ -22,6 +24,13 @@
             span {
                 margin: 5px 0;
                 color: gray;
+            }
+
+            .link{
+                transition: all 0.2s ease-in-out;
+                &:hover{
+                    color: $pink;
+                }
             }
         }
 

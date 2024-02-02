@@ -1,4 +1,4 @@
-.reviewCard{
+.reviewCard {
     // border: 1px solid black;
     border-radius: 1rem;
     box-shadow: 0 0 7px 0 #dddddd;
@@ -6,24 +6,57 @@
     margin: 1rem 0;
     transition: all 0.2s ease-in-out;
 
-    h3{
+    h3 {
         margin: 0;
     }
 
-    span{
+    span {
         text-align: justify;
     }
 
-    .center{
+    .center {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        p{
+
+        p {
             padding: 0;
         }
     }
 
-    &:hover{
+    .deleteReview {
+        display: block;
+        margin-left: auto;
+
+        border-radius: 25px;
+        border: 2px solid red;
+        color: red;
+        // font-size: 12px;
+        font-weight: bold;
+        padding: 0.3rem 0.6rem;
+        letter-spacing: 1px;
+        transition: all 0.5s ease;
+        // margin-top: 1rem;
+        cursor: pointer;
+        background-color: transparent;
+        font-size: 0.7rem;
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            background-color: red;
+            color: white;
+            // border: 4px solid black;
+        }
+    }
+
+    &:hover {
         transform: scale(1.01);
     }
 }

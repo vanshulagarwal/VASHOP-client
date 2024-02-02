@@ -8,10 +8,12 @@ const Footer = () => {
             <div className="top">
                 <div className="item">
                     <h1>Categories</h1>
-                    <Link className="link" to="/products?categories=cate1">Cate1</Link>
-                    <Link className="link" to="/products?categories=cate2">Cate2</Link>
-                    <Link className="link" to="/products?categories=cate3">Cate3</Link>
-                    <Link className="link" to="/products?categories=cate4">Cate4</Link>
+                    <Link className="link" to="/products?categories=men">Men</Link>
+                    <Link className="link" to="/products?categories=women">Women</Link>
+                    <Link className="link" to="/products?categories=winter">Winter</Link>
+                    <Link className="link" to="/products?categories=shoes">Footwear</Link>
+                    <Link className="link" to="/products?categories=accessories">Accessories</Link>
+                    <Link className="link" to="/products?categories=formal">Formals</Link>
                 </div>
                 <div className="item">
                     <h1>Links</h1>
@@ -30,8 +32,8 @@ const Footer = () => {
             </div>
             <div className="bottom">
                 <div className="left">
-                    <span className="logo">ABCDE</span>
-                    <span className="copyright"> &copy; Copyright 2023. All Rights Reserved</span>
+                    <span className="logo">VA.SHOP</span>
+                    <span className="copyright"> &copy; Copyright 2024. All Rights Reserved</span>
                 </div>
                 <div className="right">
                     <img src="/img/payment.png" alt="" />

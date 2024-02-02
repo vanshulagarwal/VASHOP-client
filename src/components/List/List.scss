@@ -1,7 +1,5 @@
 .list {
     display: grid;
-    // justify-content: center;
-    // flex-wrap: wrap;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(4, 1fr);
 

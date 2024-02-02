@@ -12,6 +12,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Profile from "../Profile/Profile";
 import MenuIcon from '@mui/icons-material/Menu';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import logo from "/img/logo.png";
 
 const Navbar = () => {
     const products = useSelector((state) => state.cart.products);
@@ -91,7 +92,7 @@ const Navbar = () => {
 
     const handleNavbar = () => {
         if (navOpen) {
-            centerRef.current.style.left = "-200px";
+            centerRef.current.style.left = "-250px";
         }
         else {
             centerRef.current.style.left = "0";
@@ -103,13 +104,22 @@ const Navbar = () => {
         <div className="navbar">
             <div className="wrapper">
                 <div className="left">
-                    <Link className="link" to="/">ABCDE</Link>
+                    <Link className="link" to="/">
+                        <p><img src={logo} alt="logo" /></p>
+                        <p>VA.SHOP</p>
+                    </Link>
                 </div>
                 <button className="menu" onClick={handleNavbar}><MenuIcon /></button>
                 <div ref={centerRef} className="center">
-                    <button className="navbarClose" onClick={handleNavbar}>
-                        <ArrowBackIcon fontSize=""/> <span>Back</span>
-                    </button>
+                    <div className="mobileOnly">
+                        <Link className="link" to="/">
+                            <p><img src={logo} alt="" /></p>
+                            <p>VA.SHOP</p>
+                        </Link>
+                        <button className="navbarClose" onClick={handleNavbar}>
+                            <ArrowBackIcon fontSize="" /> <span>Back</span>
+                        </button>
+                    </div>
                     <div className="item" onClick={handleNavbar}>
                         <Link className="link" to="/">Home</Link>
                     </div>

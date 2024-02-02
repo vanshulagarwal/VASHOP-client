@@ -10,7 +10,7 @@ const Products = () => {
     const [categ, setCateg] = useState(searchParams.get("categories"));
 
     const [valueA, setValueA] = useState(0);
-    const [valueB, setValueB] = useState(2000);
+    const [valueB, setValueB] = useState(5000);
     const [sort, setSort] = useState(null);
 
     const [filterOpen, setFilterOpen] = useState(false);
@@ -61,15 +61,15 @@ const Products = () => {
                     <label htmlFor="2">Women</label>
                 </div>
                 <div className="inputItem">
-                    <input type="radio" name="categ" id="3" value={"children"} defaultChecked={categ == "children" ? true : false} onChange={e => setCateg(e.target.value)} />
-                    <label htmlFor="3">children</label>
+                    <input type="radio" name="categ" id="3" value={"winter"} defaultChecked={categ == "winter" ? true : false} onChange={e => setCateg(e.target.value)} />
+                    <label htmlFor="3">Winter Collection</label>
                 </div>
                 <div className="inputItem">
-                    <input type="radio" name="categ" id="4" value={"winter"} defaultChecked={categ == "winter" ? true : false} onChange={e => setCateg(e.target.value)} />
-                    <label htmlFor="4">Winter Collection</label>
+                    <input type="radio" name="categ" id="4" value={"shoes"} defaultChecked={categ == "shoes" ? true : false} onChange={e => setCateg(e.target.value)} />
+                    <label htmlFor="4">Footwear Collection</label>
                 </div>
                 <div className="inputItem">
-                    <input type="radio" name="categ" id="5" value={"accesories"} defaultChecked={categ == "accesories" ? true : false} onChange={e => setCateg(e.target.value)} />
+                    <input type="radio" name="categ" id="5" value={"accessories"} defaultChecked={categ == "accesories" ? true : false} onChange={e => setCateg(e.target.value)} />
                     <label htmlFor="5">Accesories</label>
                 </div>
                 <div className="inputItem">
@@ -84,12 +84,12 @@ const Products = () => {
                     <input type="range" min={0} max={5000} value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} />
                     <span>{maxPrice}</span>
                 </div> */}
-                <div className="range-slider flat" data-ticks-position="top" style={{ '--min': 0, '--max': 5000, '--value-a': valueA, '--value-b': valueB, '--suffix': '%', '--text-value-a': JSON.stringify(valueA), '--text-value-b': JSON.stringify(valueB) }}>
-                    <input type="range" min="0" max="5000" value={valueA} onChange={(e) => handleInputChange(e, setValueA, 'value-a')} />
+                <div className="price-slider flat" data-ticks-position="top" style={{ '--min': 0, '--max': 7000, '--value-a': valueA, '--value-b': valueB, '--suffix': '%', '--text-value-a': JSON.stringify(valueA), '--text-value-b': JSON.stringify(valueB) }}>
+                    <input type="range" min="0" max="7000" value={valueA} onChange={(e) => handleInputChange(e, setValueA, 'value-a')} />
                     <output>{valueA}</output>
-                    <input type="range" min="0" max="5000" value={valueB} onChange={(e) => handleInputChange(e, setValueB, 'value-b')} />
+                    <input type="range" min="0" max="7000" value={valueB} onChange={(e) => handleInputChange(e, setValueB, 'value-b')} />
                     <output>{valueB}</output>
-                    <div className="range-slider__progress"></div>
+                    <div className="price-slider-bar"></div>
                 </div>
             </div>
             <div className="filterItem">
@@ -103,7 +103,7 @@ const Products = () => {
                     <label htmlFor="desc">Price (highest first)</label>
                 </div>
             </div>
-            <button className="filterBtn" onClick={handleFilterOpen}>FILTER</button>
+            <button className="filterBtn" onClick={handleFilterOpen}>FILTERS</button>
         </div>
         <div className="right">
             <img className="catImg" src={"/img/" + categ + ".jpeg"} alt="" />

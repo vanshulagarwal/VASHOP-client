@@ -1,11 +1,21 @@
 .loader{
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10000;
+
+    .animation{
+        position: absolute;
+    }
+
+    .logo{
+        position: absolute;
+        width: 5rem;
+    }
 }

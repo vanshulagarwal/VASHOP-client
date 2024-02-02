@@ -1,4 +1,4 @@
-$cartBGColor: #d9b25f;
+$cartBGColor: #ff3e6c;
 
 .products {
     padding: 30px 30px;
@@ -6,7 +6,6 @@ $cartBGColor: #d9b25f;
     position: relative;
 
     .left {
-        // flex: 1;
         width: 200px;
         position: sticky;
         height: 100%;
@@ -24,50 +23,29 @@ $cartBGColor: #d9b25f;
             }
 
             .inputItem {
-                // * {
-                //     box-sizing: border-box;
-                // }
-
                 $bg: #ecf0f3;
                 $fg: #1f2020;
 
                 h1 {
                     margin: 0;
-                    // color: color.scale($fg, $saturation: 30%, $lightness: 60%);
                 }
 
                 [type="radio"] {
-                    display: none;
+                    // display: none;
+                    accent-color: $cartBGColor;
+                    cursor: pointer;
                 }
 
                 label {
-                    // position: relative;
                     padding: 5px 0;
-                    display: grid;
-                    grid-template-columns: auto 1fr;
-                    align-items: center;
                     font-weight: 500;
                     transition: 0.4s ease;
                     color: transparentize($fg, 0.5);
+                    cursor: pointer;
                 }
 
                 label:hover {
                     color: inherit;
-                }
-
-                label:before {
-                    transition: 0.4s ease;
-                    content: "";
-                    border-radius: 100vmax;
-                    display: inline-grid;
-                    margin-right: 1em;
-                    width: 25px;
-                    height: 25px;
-                    box-shadow: -0.5em -0.25em 0.5em 0 lighten($bg, 20%),
-                        0.5em 0.25em 1.25em 0 darken($bg, 20%);
-                    background-color: lighten($bg, 1%);
-                    filter: blur(0.1em);
-                    cursor: pointer;
                 }
 
                 [type="radio"]:checked+label {
@@ -75,27 +53,17 @@ $cartBGColor: #d9b25f;
                     text-indent: 0.5em;
                     font-weight: 600;
                 }
-
-                [type="radio"]:checked+label:before {
-                    box-shadow: -0.5em -0.25em 0.5em 0 lighten($bg, 20%),
-                        0.5em 0.25em 1.25em 0 darken($bg, 20%),
-                        0.1em 0.1em 0 transparentize(darken($bg, 20%), 0.5) inset,
-                        0.2em 0.2em 0 transparentize(darken($bg, 10%), 0.5) inset,
-                        0.1em 0.1em 0 transparentize(lighten($bg, 40%), 0.5) inset,
-                        -0.2em -0.2em 0 transparentize(lighten($bg, 20%), 0.5) inset;
-                }
-
             }
 
-            // .inputItem {
-            //     margin-bottom: 5px;
+            .inputItem {
+                margin-bottom: 5px;
 
-            //     label {
-            //         margin-left: 5px;
-            //     }
-            // }
+                label {
+                    margin-left: 5px;
+                }
+            }
 
-            .range-slider.flat {
+            .price-slider.flat {
                 width: 100%;
                 margin-top: 20px;
                 --thumb-size: 20px;
@@ -106,11 +74,8 @@ $cartBGColor: #d9b25f;
                 --thumb-shadow-active: 0 0 0 13px var(--primary-color) inset;
             }
 
-            ////////////////////////////////////////////////
-            // The main styles
-
-            .range-slider {
-                --primary-color: #d9b25f;
+            .price-slider {
+                --primary-color: #ff3e6c;
 
                 --value-offset-y: var(--ticks-gap);
                 --value-active-color: white;
@@ -125,7 +90,7 @@ $cartBGColor: #d9b25f;
 
                 --min-max-font: 12px Arial;
                 --min-max-opacity: 0.5;
-                --min-max-x-offset: 10%; // 50% to center
+                --min-max-x-offset: 10%;
 
                 --thumb-size: 22px;
                 --thumb-color: white;
@@ -140,23 +105,22 @@ $cartBGColor: #d9b25f;
                 --ticks-thickness: 1px;
                 --ticks-height: 5px;
                 --ticks-gap: var(--ticks-height,
-                        0); // vertical space between the ticks and the progress bar
+                        0);
                 --ticks-color: silver;
 
-                // ⚠️ BELOW VARIABLES SHOULD NOT BE CHANGED
                 --step: 1;
                 --ticks-count: Calc(var(--max) - var(--min)) / var(--step);
                 --maxTicksAllowed: 30;
                 --too-many-ticks: Min(1, Max(var(--ticks-count) - var(--maxTicksAllowed), 0));
                 --x-step: Max(var(--step),
-                        var(--too-many-ticks) * (var(--max) - var(--min))); // manipulate the number of steps if too many ticks exist, so there would only be 2
+                        var(--too-many-ticks) * (var(--max) - var(--min)));
                 --tickInterval: 100/ ((var(--max) - var(--min)) / var(--step)) * var(--tickEvery, 1);
                 --tickIntervalPerc: calc((100% - var(--thumb-size)) / ((var(--max) - var(--min)) / var(--x-step)) * var(--tickEvery, 1));
 
                 --value-a: Clamp(var(--min),
                         var(--value, 0),
-                        var(--max)); // default value ("--value" is used in single-range markup)
-                --value-b: var(--value, 0); // default value
+                        var(--max));
+                --value-b: var(--value, 0);
                 --text-value-a: var(--text-value, "");
 
                 --completed-a: calc((var(--value-a) - var(--min)) / (var(--max) - var(--min)) * 100);
@@ -164,16 +128,11 @@ $cartBGColor: #d9b25f;
                 --ca: Min(var(--completed-a), var(--completed-b));
                 --cb: Max(var(--completed-a), var(--completed-b));
 
-                // breakdown of the below super-complex brain-breaking CSS math:
-                // "clamp" is used to ensure either "-1" or "1"
-                // "calc" is used to inflat the outcome into a huge number, to get rid of any value between -1 & 1
-                // if absolute diff of both completed % is above "5" (%)
-                // ".001" bumps the value just a bit, to avoid a scenario where calc resulted in "0" (then clamp will also be "0")
                 --thumbs-too-close: Clamp(-1,
                         1000 * (Min(1, Max(var(--cb) - var(--ca) - 5, -1)) + 0.001),
                         1);
-                --thumb-close-to-min: Min(1, Max(var(--ca) - 2, 0)); // 2% threshold
-                --thumb-close-to-max: Min(1, Max(98 - var(--cb), 0)); // 2% threshold
+                --thumb-close-to-min: Min(1, Max(var(--ca) - 2, 0));
+                --thumb-close-to-max: Min(1, Max(98 - var(--cb), 0));
 
                 @mixin thumb {
                     appearance: none;
@@ -190,7 +149,6 @@ $cartBGColor: #d9b25f;
 
                 display: inline-block;
                 height: Max(var(--track-height), var(--thumb-size));
-                // margin: calc((var(--thumb-size) - var(--track-height)) * -.25) var(--thumb-size) 0;
                 background: linear-gradient(to right,
                     var(--ticks-color) var(--ticks-thickness),
                     transparent 1px) repeat-x;
@@ -208,7 +166,6 @@ $cartBGColor: #d9b25f;
                     --flip-y: 1;
                 }
 
-                // mix/max texts
                 &::before,
                 &::after {
                     --offset: calc(var(--thumb-size) / 2);
@@ -246,7 +203,6 @@ $cartBGColor: #d9b25f;
                     margin: 0 auto;
                     z-index: 5;
 
-                    // trick so "justify" will work
                     &::after {
                         content: "";
                         width: 100%;
@@ -256,7 +212,7 @@ $cartBGColor: #d9b25f;
                     }
                 }
 
-                &__progress {
+                &-bar {
                     --start-end: calc(var(--thumb-size) / 2);
                     --clip-end: calc(100% - (var(--cb)) * 1%);
                     --clip-start: calc(var(--ca) * 1%);
@@ -265,19 +221,15 @@ $cartBGColor: #d9b25f;
                     left: var(--start-end);
                     right: var(--start-end);
                     top: calc(var(--ticks-gap) * var(--flip-y, 0) + var(--thumb-size) / 2 - var(--track-height) / 2);
-                    //  transform: var(--flip-y, translateY(-50%) translateZ(0));
                     height: calc(var(--track-height));
                     background: var(--progress-background, #eee);
                     pointer-events: none;
                     z-index: -1;
                     border-radius: var(--progress-radius);
 
-                    // fill area
                     &::before {
                         content: "";
                         position: absolute;
-                        // left: Clamp(0%, calc(var(--ca) * 1%), 100%); // confine to 0 or above
-                        // width: Min(100%, calc((var(--cb) - var(--ca)) * 1%)); // confine to maximum 100%
                         left: 0;
                         right: 0;
                         clip-path: var(--clip);
@@ -289,7 +241,6 @@ $cartBGColor: #d9b25f;
                         border-radius: inherit;
                     }
 
-                    // shadow-effect
                     &::after {
                         content: "";
                         position: absolute;
@@ -297,7 +248,6 @@ $cartBGColor: #d9b25f;
                         right: 0;
                         bottom: 0;
                         left: 0;
-                        // box-shadow: var(--progress-shadow);
                         pointer-events: none;
                         border-radius: inherit;
                     }
@@ -305,6 +255,7 @@ $cartBGColor: #d9b25f;
 
                 &>input {
                     -webkit-appearance: none;
+                    appearance: none;
                     width: 100%;
                     height: var(--thumb-size);
                     margin: 0;
@@ -346,7 +297,7 @@ $cartBGColor: #d9b25f;
                     &:active {
                         --thumb-shadow: var(--thumb-shadow-active);
                         cursor: grabbing;
-                        z-index: 2; // when sliding left thumb over the right or vice-versa, make sure the moved thumb is on top
+                        z-index: 2;
 
                         +output {
                             transition: 0s;
@@ -378,9 +329,8 @@ $cartBGColor: #d9b25f;
                         }
                     }
 
-                    // non-multiple range should not clip start of progress bar
                     &:only-of-type {
-                        ~.range-slider__progress {
+                        ~.price-slider-bar {
                             --clip-start: 0;
                         }
                     }
@@ -445,20 +395,23 @@ $cartBGColor: #d9b25f;
             left: -240px;
             background-color: white;
             z-index: 2000;
-            transition: all 0.5s ease-in-out;
-            // transform: translateX(200px);
+            transition: all 0.5s cubic-bezier(0.39, 0, 0.23, 0.98);
 
             .filterBtn {
                 display: block;
                 position: absolute;
                 top: calc(50%);
-                left: calc(250px - 60vh);
+                left: calc(250px - 48px);
                 margin: 0;
                 padding: 5px;
                 transform: rotateZ(270deg);
-                width: 120vh;
-                border: none;
-                background-color: pink;
+                width: 100px;
+                border: 3px solid $cartBGColor;
+                border-radius: 0 0 0.5rem 0.5rem;
+                background-color: #ffffff;
+                color: $cartBGColor;
+                font-weight: 600;
+                cursor: pointer;
             }
 
             .filterItem {

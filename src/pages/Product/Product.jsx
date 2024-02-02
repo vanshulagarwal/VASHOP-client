@@ -34,7 +34,7 @@ const Product = () => {
     }
 
     const handleReviewSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         const data = await usePostFetch(`/products/${id}/addreview`, {
             author: loggedInUser._id,
             title: reviewTitle,
@@ -145,7 +145,7 @@ const Product = () => {
                                             <Rating onClick={handleRating} initialValue={rating} size={25} />
                                             <input type="text" value={reviewTitle} onChange={e => setReviewTitle(e.target.value)} placeholder="Title" />
                                             <textarea type="text" value={newReview} onChange={e => setNewReview(e.target.value)} placeholder="Write a review..." />
-                                            <button onClick={handleReviewSubmit}>Submit Review</button>
+                                            <button onClick={()=>{handleReviewSubmit();}}>Submit Review</button>
                                         </form>
                                         : <div className="signInReview">
                                             Sign in to write a review
