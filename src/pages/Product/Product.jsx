@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import "./Product.scss";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cartReducer";
@@ -34,7 +34,7 @@ const Product = () => {
     }
 
     const handleReviewSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         const data = await usePostFetch(`/products/${id}/addreview`, {
             author: loggedInUser._id,
             title: reviewTitle,
@@ -145,12 +145,13 @@ const Product = () => {
                                             <Rating onClick={handleRating} initialValue={rating} size={25} />
                                             <input type="text" value={reviewTitle} onChange={e => setReviewTitle(e.target.value)} placeholder="Title" />
                                             <textarea type="text" value={newReview} onChange={e => setNewReview(e.target.value)} placeholder="Write a review..." />
-                                            <button onClick={()=>{handleReviewSubmit();}}>Submit Review</button>
+                                            <button onClick={handleReviewSubmit}>Submit Review</button>
                                         </form>
                                         : <div className="signInReview">
                                             Sign in to write a review
-                                            <a href="/login"><button>Sign In</button></a>
-                                        </div>}
+                                            <Link to={"/login"}><button>Sign In</button></Link>
+                                        </div>
+                                    }
                                 </div>
                                 {data.reviews && data.reviews[0]
                                     ? (<div className="reviews">

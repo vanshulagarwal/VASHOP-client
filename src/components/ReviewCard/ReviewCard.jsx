@@ -19,7 +19,7 @@ const ReviewCard = ({ review }) => {
             toast.success("Review Deleted", {
                 position: toast.POSITION.TOP_LEFT
             });
-            window.location.reload();
+            // window.location.reload();
         }
         else {
             if (data.status == 401) {

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import List from "../../components/List/List";
 import { useSearchParams } from "react-router-dom";
 import "./Products.scss";
@@ -8,6 +8,9 @@ import Loader from "../../components/Loader/Loader";
 const Products = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [categ, setCateg] = useState(searchParams.get("categories"));
+    useEffect(() => {
+        setCateg(searchParams.get('categories'));
+    }, [searchParams]);
 
     const [valueA, setValueA] = useState(0);
     const [valueB, setValueB] = useState(5000);
@@ -53,27 +56,27 @@ const Products = () => {
             <div className="filterItem">
                 <h2 className="categoryHeading">Categories</h2>
                 <div className="inputItem">
-                    <input type="radio" name="categ" id="1" value={"men"} defaultChecked={categ == "men" ? true : false} onChange={e => setCateg(e.target.value)} />
+                    <input type="radio" name="categ" id="1" value={"men"} checked={categ == "men" ? true : false} onChange={e => setCateg(e.target.value)} />
                     <label htmlFor="1">Men</label>
                 </div>
                 <div className="inputItem">
-                    <input type="radio" name="categ" id="2" value={"women"} defaultChecked={categ == "women" ? true : false} onChange={e => setCateg(e.target.value)} />
+                    <input type="radio" name="categ" id="2" value={"women"} checked={categ == "women" ? true : false} onChange={e => setCateg(e.target.value)} />
                     <label htmlFor="2">Women</label>
                 </div>
                 <div className="inputItem">
-                    <input type="radio" name="categ" id="3" value={"winter"} defaultChecked={categ == "winter" ? true : false} onChange={e => setCateg(e.target.value)} />
+                    <input type="radio" name="categ" id="3" value={"winter"} checked={categ == "winter" ? true : false} onChange={e => setCateg(e.target.value)} />
                     <label htmlFor="3">Winter Collection</label>
                 </div>
                 <div className="inputItem">
-                    <input type="radio" name="categ" id="4" value={"shoes"} defaultChecked={categ == "shoes" ? true : false} onChange={e => setCateg(e.target.value)} />
+                    <input type="radio" name="categ" id="4" value={"shoes"} checked={categ == "shoes" ? true : false} onChange={e => setCateg(e.target.value)} />
                     <label htmlFor="4">Footwear Collection</label>
                 </div>
                 <div className="inputItem">
-                    <input type="radio" name="categ" id="5" value={"accessories"} defaultChecked={categ == "accesories" ? true : false} onChange={e => setCateg(e.target.value)} />
-                    <label htmlFor="5">Accesories</label>
+                    <input type="radio" name="categ" id="5" value={"accessories"} checked={categ == "accessories" ? true : false} onChange={e => setCateg(e.target.value)} />
+                    <label htmlFor="5">Accessories</label>
                 </div>
                 <div className="inputItem">
-                    <input type="radio" name="categ" id="6" value={"formal"} defaultChecked={categ == "formal" ? true : false} onChange={e => setCateg(e.target.value)} />
+                    <input type="radio" name="categ" id="6" value={"formal"} checked={categ == "formal" ? true : false} onChange={e => setCateg(e.target.value)} />
                     <label htmlFor="6">Formals</label>
                 </div>
             </div>
