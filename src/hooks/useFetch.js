@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { makeRequest } from "../makeRequest";
 
-const useFetch = (url) => {
+const useFetch = (url, reload = 0) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -19,7 +19,7 @@ const useFetch = (url) => {
             setLoading(false);
         };
         fetchData();
-    }, [url]);
+    }, [url, reload]);
 
     return { data, loading, error };
 }

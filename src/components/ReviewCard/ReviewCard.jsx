@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { removeAuth } from "../../redux/authReducer";
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ review, handleReload }) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.auth.auth.user);
 
@@ -20,6 +20,7 @@ const ReviewCard = ({ review }) => {
                 position: toast.POSITION.TOP_LEFT
             });
             // window.location.reload();
+            handleReload();
         }
         else {
             if (data.status == 401) {

@@ -17,7 +17,8 @@ const Product = () => {
     const dispatch = useDispatch();
     const id = useParams().id;
     // console.log(id);
-    const { data, loading, error } = useFetch(`/products/${id}`);
+    const [reload, setReload] = useState(1);
+    const { data, loading, error } = useFetch(`/products/${id}`, reload);
     // console.log(data);
     const loggedInUser = useSelector(state => state.auth.auth.user);
 
@@ -46,6 +47,10 @@ const Product = () => {
             toast.success("Thank You for your Valuable Feedback", {
                 position: toast.POSITION.TOP_LEFT
             });
+            setReload(prev => prev + 1);
+            setReviewTitle("");
+            setNewReview("");
+            setRating(1);
         }
         else {
             if (data.status == 401) {
@@ -61,6 +66,10 @@ const Product = () => {
             }
             console.log(data.error);
         }
+    }
+
+    const handleReload = () => {
+        setReload(prev => prev + 1);
     }
 
     return (
@@ -155,7 +164,7 @@ const Product = () => {
                                 </div>
                                 {data.reviews && data.reviews[0]
                                     ? (<div className="reviews">
-                                        {data.reviews.slice(0, visibleReviews).map(review => <ReviewCard review={review} key={review._id} />)}
+                                        {data.reviews.slice(0, visibleReviews).map(review => <ReviewCard review={review} key={review._id} handleReload={handleReload} />)}
                                     </div>)
                                     : <div className="noReviews">No Reviews Yet</div>
                                 }
