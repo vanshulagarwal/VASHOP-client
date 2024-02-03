@@ -26,9 +26,10 @@ $pink: #ff3160;
                 color: gray;
             }
 
-            .link{
+            .link {
                 transition: all 0.2s ease-in-out;
-                &:hover{
+
+                &:hover {
                     color: $pink;
                 }
             }
@@ -37,10 +38,22 @@ $pink: #ff3160;
         @media (max-width:800px) {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
+            // grid-template-rows: 1fr 1fr;
+
+            .item {
+
+                h1 {
+                    margin-bottom: 0;
+                }
+
+                .link,
+                span {
+                    margin: 3px 0;
+                }
+            }
         }
 
-        @media (max-width:600px) {
+        @media (max-width:500px) {
             display: grid;
             grid-template-columns: 1fr;
 
@@ -75,8 +88,14 @@ $pink: #ff3160;
         }
 
         .right {
-            img {
-                width: 300px;
+            display: flex;
+            gap: 2rem;
+
+            span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
             }
         }
 
@@ -93,10 +112,10 @@ $pink: #ff3160;
     }
 
     @media (max-width:800px) {
-        margin: 70px 50px 20px 50px;
+        margin: 70px 20px 20px 20px;
     }
 
     @media (max-width:600px) {
-        margin: 50px 50px 20px 50px;
+        margin: 20px 20px 20px 20px;
     }
 }

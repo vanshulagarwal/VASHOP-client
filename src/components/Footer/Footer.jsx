@@ -1,6 +1,7 @@
 import React from "react"
 import "./Footer.scss";
 import { Link } from "react-router-dom";
+import GitHub from '@mui/icons-material/GitHub';
 
 const Footer = () => {
     return <>
@@ -36,7 +37,9 @@ const Footer = () => {
                     <span className="copyright"> &copy; Copyright 2024. All Rights Reserved</span>
                 </div>
                 <div className="right">
-                    <img src="/img/payment.png" alt="" />
+                    {/* <img src="/img/payment.png" alt="" /> */}
+                    <a className="link" href="https://github.com/vanshulagarwal/VASHOP-client"><span><GitHub />REACT</span></a>
+                    <a className="link" href="https://github.com/vanshulagarwal/VASHOP-api"><span><GitHub />API</span></a>
                 </div>
             </div>
         </div>

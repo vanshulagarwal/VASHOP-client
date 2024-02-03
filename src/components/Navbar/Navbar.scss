@@ -108,14 +108,22 @@ $cartBGColor: #ff3e6c;
                     background-color: $cartBGColor;
                     color: white;
                     position: absolute;
-                    top: -10px;
+                    top: -5px;
                     left: 15px;
                     text-align: center;
+                }
+
+                svg{
+                    margin-top: 5px;
                 }
             }
 
             .profileIcon {
                 position: relative;
+
+                svg{
+                    margin-top: 5px;
+                }
             }
         }
 
