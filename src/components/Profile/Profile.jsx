@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeAuth, setAuth } from "../../redux/authReducer";
 import { makeRequest } from "../../makeRequest";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
     const dispatch = useDispatch();
@@ -59,7 +60,8 @@ const Profile = () => {
                 : <div>
                     <h3>Hello</h3>
                     <p>Become a member</p>
-                    <a className="signInBtn" href="/login"><button>SIGN IN</button></a>
+                    {/* <a className="signInBtn" href="/login"><button>SIGN IN</button></a> */}
+                    <Link className="link signInBtn" to={"/login"}><button>SIGN IN</button></Link>
                 </div>
             }
         </div>
