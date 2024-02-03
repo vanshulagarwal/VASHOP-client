@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import SearchIcon from '@mui/icons-material/Search';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
@@ -20,6 +20,10 @@ const Navbar = () => {
     const [searchOpen, setSearchOpen] = useState(false);
     const [profileOpen, setProfileOpen] = useState(false);
     const [navOpen, setNavOpen] = useState(false);
+
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    const navbarRef = useRef();
 
     // const search = document.querySelector('.search');
     const search = useRef();
@@ -100,8 +104,28 @@ const Navbar = () => {
         setNavOpen(!navOpen);
     }
 
+    const controlNavbar = () => {
+        if (window.scrollY > lastScrollY) {
+            navbarRef.current.style.top = '-60px';
+        }
+        else {
+            navbarRef.current.style.top = '0px';
+        }
+
+        setLastScrollY(window.scrollY);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', controlNavbar);
+
+        // cleanup function
+        return () => {
+            window.removeEventListener('scroll', controlNavbar);
+        };
+    }, [lastScrollY]);
+
     return (
-        <div className="navbar">
+        <div className="navbar" ref={navbarRef}>
             <div className="wrapper">
                 <div className="left">
                     <Link className="link" to="/">

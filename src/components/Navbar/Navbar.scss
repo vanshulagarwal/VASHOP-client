@@ -9,6 +9,7 @@ $cartBGColor: #ff3e6c;
     display: flex;
     align-items: center;
     font-weight: 400;
+    transition: all 0.2s ease-in-out;
 
     .wrapper {
         backdrop-filter: blur(10px);
@@ -180,13 +181,13 @@ $cartBGColor: #ff3e6c;
                         align-items: center;
         
                         img {
-                            width: 1.5rem;
+                            width: 1.7rem;
                         }
         
                         p {
                             margin: 0;
                             padding: 0;
-                            font-size: 0.5rem;
+                            font-size: 0.7rem;
                         }
                     }
 

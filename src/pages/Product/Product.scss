@@ -43,6 +43,7 @@ $red: #f01b1b;
 
             h1 {
                 margin: 1rem 0;
+                font-size: 1.5rem;
             }
 
             hr {
@@ -52,7 +53,7 @@ $red: #f01b1b;
 
             .price {
                 padding: 1rem 0;
-                font-size: 1.5rem;
+                font-size: 1.2rem;
                 color: #2879fe;
                 font-weight: 700;
                 display: flex;
@@ -62,6 +63,7 @@ $red: #f01b1b;
                 h3 {
                     margin: 0;
                     color: $pink;
+                    font-size: 1.5rem;
 
                     &:last-child {
                         color: gray;
@@ -73,7 +75,8 @@ $red: #f01b1b;
             }
 
             p {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                line-height: 1.2rem;
                 font-weight: 300;
                 text-align: justify;
                 padding: 0.5rem 0;
@@ -184,9 +187,9 @@ $red: #f01b1b;
                 // border: 1px solid #000000;
                 box-shadow: 0 0 10px 0 #dddddd;
                 border-radius: 1rem;
-                padding: 20px;
+                padding: 1.7rem;
 
-                h3{
+                h3 {
                     margin: 0;
                 }
 
@@ -200,9 +203,14 @@ $red: #f01b1b;
                         outline: none;
                         background-color: transparent;
                         border: none;
-                        border-bottom: 1px solid black;
+                        border-bottom: 1px solid transparent;
                         padding: 5px 10px;
                         font-size: 1rem;
+                        transition: all 0.2s ease-in-out;
+
+                        &:focus{
+                            border-bottom: 1px solid black;
+                        }
                     }
 
                     textarea {
@@ -214,6 +222,7 @@ $red: #f01b1b;
                         box-shadow: 0px 0px 5px 0 silver inset;
                         resize: none;
                         margin: 5px 0;
+                        font-family: 'Poppins', sans-serif;
                     }
 
                     button {
@@ -322,6 +331,12 @@ $red: #f01b1b;
                     img {
                         max-height: 500px;
                     }
+                }
+            }
+
+            .right {
+                h1 {
+                    font-size: 1.5rem;
                 }
             }
         }

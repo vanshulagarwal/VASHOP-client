@@ -61,6 +61,20 @@ $pink: #ff3e6c;
 
     @media (max-width:900px) {
         padding: 10px;
+        font-size: 0.8rem;
+        h2{
+            font-size: 0.9rem;
+        }
+
+        .prices{
+            h3{
+                font-size: 1rem;
+                
+                &:first-child {
+                    font-size: 0.9rem;
+                }
+            }
+        }
     }
     
     @media (max-width:500px) {
