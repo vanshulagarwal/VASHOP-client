@@ -20,7 +20,7 @@
 
     button {
         border-radius: 20px;
-        border: 1px solid #ff3e6c;
+        border: 3px solid #ff3e6c;
         background-color: #ff3e6c;
         color: #ffffff;
         font-size: 12px;
@@ -140,6 +140,13 @@
                 .windowBtn {
                     background-color: transparent;
                     border-color: #ffffff;
+                    transition: all 0.2s ease-in-out;
+                    font-weight: 700;
+
+                    &:hover {
+                        color: #ff3e6c;
+                        background-color: #ffffff;
+                    }
                 }
             }
         }
@@ -198,7 +205,7 @@
                 display: none;
             }
 
-            .form-container{
+            .form-container {
                 display: flex;
                 justify-content: center;
             }

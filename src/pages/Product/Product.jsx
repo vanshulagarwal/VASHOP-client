@@ -158,7 +158,7 @@ const Product = () => {
                                         </form>
                                         : <div className="signInReview">
                                             Sign in to write a review
-                                            <Link to={"/login"}><button>Sign In</button></Link>
+                                            <Link to={"/login"}><button>SIGN IN</button></Link>
                                         </div>
                                     }
                                 </div>

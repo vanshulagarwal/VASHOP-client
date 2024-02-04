@@ -31,7 +31,7 @@ $red: #f01b1b;
                 img {
                     width: 100%;
                     max-height: 500px;
-                    object-fit: cover;
+                    object-fit: contain;
                 }
             }
         }
@@ -208,7 +208,7 @@ $red: #f01b1b;
                         font-size: 1rem;
                         transition: all 0.2s ease-in-out;
 
-                        &:focus{
+                        &:focus {
                             border-bottom: 1px solid black;
                         }
                     }
@@ -227,18 +227,15 @@ $red: #f01b1b;
 
                     button {
                         border-radius: 20px;
-                        border: 1px solid $pink;
-                        background-color: $pink;
-                        color: #ffffff;
-                        font-size: 12px;
+                        border: 3px solid $pink;
+                        background-color: transparent;
+                        color: $pink;
                         font-weight: bold;
-                        padding: 12px 25px;
+                        padding: 10px 20px;
                         letter-spacing: 1px;
-                        transition: transform 80ms ease-in;
-                        // margin-top: 1rem;
+                        transition: all 0.5s ease-in-out;
+                        margin-top: 0.5rem;
                         cursor: pointer;
-                        width: fit-content;
-                        margin: 0 auto;
 
                         &:active {
                             transform: scale(0.95);
@@ -246,6 +243,11 @@ $red: #f01b1b;
 
                         &:focus {
                             outline: none;
+                        }
+
+                        &:hover {
+                            background-color: $pink;
+                            color: white;
                         }
                     }
                 }
@@ -261,14 +263,13 @@ $red: #f01b1b;
 
                         button {
                             border-radius: 20px;
-                            border: 1px solid $pink;
-                            background-color: $pink;
-                            color: #ffffff;
-                            font-size: 12px;
+                            border: 3px solid $pink;
+                            background-color: transparent;
+                            color: $pink;
                             font-weight: bold;
-                            padding: 12px 45px;
+                            padding: 10px 20px;
                             letter-spacing: 1px;
-                            transition: transform 80ms ease-in;
+                            transition: all 0.5s ease-in-out;
                             margin-top: 1rem;
                             cursor: pointer;
 
@@ -279,11 +280,17 @@ $red: #f01b1b;
                             &:focus {
                                 outline: none;
                             }
+
+                            &:hover {
+                                background-color: $pink;
+                                color: white;
+                            }
                         }
                     }
                 }
 
             }
+
             .showMore {
                 text-align: right;
                 cursor: pointer;
