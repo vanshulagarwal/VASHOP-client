@@ -23,7 +23,7 @@ const Categories = () => {
             </div>
             <div className="items cate5">
                 <img src="/img/formal.jpeg" alt="" />
-                    <Link to="/products?categories=formals" className="link"><button>FORMALS</button></Link>
+                    <Link to="/products?categories=formal" className="link"><button>FORMALS</button></Link>
             </div>
             <div className="items cate6">
                 <img src="/img/accessories.jpeg" alt="" />
